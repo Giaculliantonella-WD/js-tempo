@@ -1,10 +1,25 @@
-/************************** LOADING *****************************/
 
-// Il <div> della pagina che funge da progress-bar
+const title = document.getElementById("loading-title");
 const progressBar = document.getElementById("progress");
 
-// Il titolo di questa sezione (Loading...)
-const title = document.getElementById("loading-title");
+
+let progress = 0;
+
+const intervalLoading = setInterval(function () {
+
+	if (progress < 100) {
+		progress++;
+		progressBar.style.width = progress + "%";
+
+	} else {
+
+		clearInterval(intervalLoading);
+		title.innerText = "Caricamento completato!!";
+	}
+
+}, 100);
+
+
 
 
 /************************ CRONOMETRO ****************************/
