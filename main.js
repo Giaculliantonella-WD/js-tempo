@@ -32,15 +32,36 @@ const btnPlay = document.getElementById("play-btn");
 const btnStop = document.getElementById("stop-btn");
 const btnReset = document.getElementById("reset-btn");
 
-//Gestisco gli eventi
-btnPlay.addEventListener("click", function () {
-	console.log("Premuto Play!");
+let cronometro;
+let tempoTrascorso = 0;
+
+document.getElementById("play-btn").addEventListener("click", function () {
+	btnPlay.disabled = true;
+	btnStop.disabled = false;
+	btnReset.disabled = false;
+
+
+	cronometro = setInterval(function () {
+		tempoAttuale.innerText = tempoTrascorso;
+		tempoTrascorso++;
+
+	}, 1000);
+
 });
 
-btnStop.addEventListener("click", function () {
-	console.log("Premuto Stop!");
+document.getElementById("stop-btn").addEventListener("click", function () {
+
+	clearInterval(cronometro);
+	btnPlay.disabled = false;
+	btnStop.disabled = true;
 });
 
-btnReset.addEventListener("click", function () {
-	console.log("Premuto Reset!");
-});
+document.getElementById("reset-btn").addEventListener("click", function () {
+	clearInterval(cronometro);
+	tempoTrascorso = 0;
+	tempoAttuale.innerText = tempoTrascorso;
+	btnPlay.disabled = false;
+	btnStop.disabled = true;
+	btnReset.disabled = true;
+
+})
